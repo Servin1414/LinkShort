@@ -2,6 +2,8 @@
 
 <div align="center">
 
+<img src="assets/linkshort-banner.png" alt="LinkShort — Shorten. Share. Analyze." width="100%" />
+
 # LinkShort
 
 ### Shorten links. Organize them. Track every click.
