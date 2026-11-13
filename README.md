@@ -4,7 +4,10 @@
 
 <img src="assets/linkshort-banner.png" alt="LinkShort — Shorten. Share. Analyze." width="100%" />
 
-# LinkShort
+<h1>
+  <img src="assets/branding/linkshort-icon.png" alt="LinkShort icon" width="48" align="center" />
+  LinkShort
+</h1>
 
 ### Shorten links. Organize them. Track every click.
 
