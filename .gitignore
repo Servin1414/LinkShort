@@ -1,0 +1,49 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+
+*.log
+.DS_Store
+Thumbs.db
+
+frontend/dist/
+backend/dist/
+
+.vscode/
+.idea/
+# Local test cookies
+cookies.txt
+
+# Environment and secrets
+*.pem
+*.key
+
+# Temporary files
+*.tmp
+*.bak
+LinkShort.zip
+App-full.txt
+# Local database and environment files
+.env
+.env.*
+!.env.example
+backend/.env
+
+# Build and dependency files
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Backup and temporary project files
+*.backup
+*.bak
+*.tmp
+
+# Files not intended for public repository
+LinkShort.zip
+App-full.txt
+# Backup source files
+frontend/src/App.backup.tsx

@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: linkshort-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: linkshort
+      POSTGRES_USER: linkshort
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-linkshort_local_dev}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - linkshort_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U linkshort -d linkshort"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  linkshort_pgdata:
