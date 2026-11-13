@@ -4,17 +4,19 @@
 
 # LinkShort
 
-### Shorten links. Keep them organized. Understand every click.
+### Shorten links. Organize them. Track every click.
 
-A bilingual, locally hosted URL shortener with user authentication, private link management, and click analytics.
+A full-stack URL shortener with account-based link management and click analytics.
 
 [![Node.js](https://img.shields.io/badge/Node.js-LTS-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=20232A)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+[![Express](https://img.shields.io/badge/Express-5-000000?logo=express&logoColor=white)](https://expressjs.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?logo=prisma&logoColor=white)](https://www.prisma.io/)
 
-[Features](#-features) · [Tech Stack](#-technology-stack) · [Getting Started](#-getting-started) · [Project Structure](#-project-structure)
+[Features](#-features) · [Tech Stack](#-technology-stack) · [Setup](#-getting-started) · [Structure](#-project-structure) · [Security](#-security-notes)
 
 </div>
 
@@ -22,55 +24,53 @@ A bilingual, locally hosted URL shortener with user authentication, private link
 
 ## معرفی کوتاه
 
-**LinkShort** یک پروژه کوتاه‌کننده لینک با قابلیت ثبت‌نام و ورود کاربران، مدیریت لینک‌های اختصاصی و مشاهده آمار کلیک است. این پروژه با هدف یادگیری و نمایش عملی توسعه فول‌استک طراحی شده و در حال حاضر برای اجرا و نمایش محلی آماده شده است.
+**LinkShort** یک ابزار کوتاه‌سازی لینک با امکان ساخت حساب کاربری، مدیریت لینک‌های اختصاصی و مشاهده آمار کلیک است. این پروژه با هدف یادگیری و نمایش عملی توسعه فول‌استک ساخته شده و در حال حاضر برای اجرا به‌صورت محلی طراحی شده است.
 
 ## ✨ Features
 
-- **User authentication** — Register and sign in to a personal account.
-- **Private link management** — Each user manages their own shortened links.
-- **URL shortening** — Create a compact link from a longer destination URL.
+- **URL shortening** — Turn long destination URLs into short links.
+- **User accounts** — Register and sign in to access a personal workspace.
+- **Private link management** — Each account manages its own links.
 - **Click tracking** — Record visits to shortened links.
-- **Analytics dashboard** — Review link activity and click statistics.
-- **Bilingual interface** — Persian and English interface support.
-- **Local development environment** — PostgreSQL runs through Docker Compose.
+- **Analytics dashboard** — View click totals and daily activity.
+- **Bilingual interface** — Switch between Persian and English.
+- **Local database environment** — Run PostgreSQL with Docker Compose.
 
 ## 🧰 Technology Stack
 
-| Area | Technologies |
+| Layer | Technologies |
 | --- | --- |
-| Frontend | React 19, TypeScript, Vite |
-| UI and routing | React Router, Lucide React |
+| Frontend | React 19, TypeScript, Vite 7 |
+| Routing and UI | React Router 7, Lucide React |
 | Localization and charts | i18next, Recharts |
 | Backend | Node.js, Express 5, TypeScript |
-| Database and ORM | PostgreSQL 17, Prisma 6 |
+| Database | PostgreSQL 17, Prisma 6 |
 | Authentication | JSON Web Tokens, bcryptjs, cookie-parser |
-| Development environment | Docker Compose, npm workspaces |
+| Local development | Docker Compose, npm workspaces |
 
-## 🏗️ Architecture
+## 🏛️ Architecture
 
-The application is organized as a frontend, an Express API, and a PostgreSQL database.
+LinkShort uses a separate frontend and backend, with Prisma connecting the API to PostgreSQL.
 
 ```mermaid
 flowchart LR
     U[User] --> FE[React + Vite]
-    FE --> API[Express API]
+    FE -->|HTTP API| API[Express + Node.js]
     API --> ORM[Prisma ORM]
     ORM --> DB[(PostgreSQL)]
 ```
 
 ## 🚀 Getting Started
 
-LinkShort is currently intended for **local development and educational demonstration** on Windows. It is not configured as a public production service.
+> **Project status:** LinkShort is currently intended for local development and educational demonstration. It is not configured as a publicly hosted production service.
 
 ### Prerequisites
 
-Install the following:
-
 - [Node.js LTS](https://nodejs.org/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- Git (to clone the repository)
+- [Git](https://git-scm.com/)
 
-Start Docker Desktop and wait until its engine is ready before continuing.
+Make sure Docker Desktop is running before starting the setup.
 
 ### 1. Clone the repository
 
@@ -81,40 +81,40 @@ git clone https://github.com/Servin1414/LinkShort.git
 cd LinkShort
 ```
 
-### 2. Run the setup script
+### 2. Install and configure
 
-Double-click `SETUP.bat`, or run it from the project directory:
+Run the setup script from the project root:
 
 ```cmd
 SETUP.bat
 ```
 
-The setup script:
+The script automatically:
 
-1. Checks that Node.js, npm, and Docker are available.
-2. Installs the project dependencies.
-3. Creates the local backend environment file if it does not exist.
-4. Starts the PostgreSQL container.
-5. Generates the Prisma Client and prepares the database schema.
+1. Checks Node.js, npm, and Docker.
+2. Installs project dependencies.
+3. Creates `backend/.env` if it does not already exist.
+4. Starts the PostgreSQL container and waits for it to become healthy.
+5. Generates the Prisma Client and synchronizes the database schema.
 
 ### 3. Start the application
 
-After setup completes, run:
+After setup completes:
 
 ```cmd
 START.bat
 ```
 
-Keep the terminal window open while using the application.
+Keep the terminal window open while using LinkShort. Press `Ctrl+C` in that window to stop the development servers.
 
-### 4. Open LinkShort
+### 4. Open the application
 
-| Service | Local address |
+| Service | Local URL |
 | --- | --- |
 | Frontend | http://127.0.0.1:5173 |
 | Backend health check | http://127.0.0.1:3000/api/health |
 
-Register an account before creating and managing shortened links.
+Create an account before using the link management features.
 
 ## 📁 Project Structure
 
@@ -140,12 +140,13 @@ LinkShort/
 ├── docker-compose.yml
 ├── SETUP.bat
 ├── START.bat
-└── package.json
+├── package.json
+└── package-lock.json
 ```
 
-## 🛠️ Useful Commands
+## ⚙️ Useful Commands
 
-Run these commands from the project root:
+Run these commands from the project root after setup:
 
 | Command | Description |
 | --- | --- |
@@ -155,62 +156,59 @@ Run these commands from the project root:
 | `npm run db:push` | Synchronize the database schema |
 | `npm run db:studio` | Open Prisma Studio |
 
-The scripts above require the dependencies to be installed and a valid local environment configuration.
-
 ## 🗄️ Database
 
-LinkShort uses PostgreSQL with Prisma. Docker Compose manages the local database container, while a named Docker volume persists database data between restarts.
+PostgreSQL runs in Docker using the configuration in `docker-compose.yml`. A named Docker volume stores database data between container restarts.
 
-To view database logs:
+To inspect PostgreSQL logs:
 
 ```cmd
 docker compose --env-file backend/.env logs postgres
 ```
 
-**Important:** Do not remove the `linkshort_pgdata` Docker volume if you need to keep your local users and links.
+Do not delete the database volume if you want to preserve your local accounts and links.
 
-## 🔐 Environment and Security
+## 🔐 Security Notes
 
-- The local environment file is `backend/.env` and must remain private.
-- `backend/.env` is excluded from Git; `.env.example` is provided as a configuration template.
+- Keep `backend/.env` private. It contains database credentials and the JWT signing secret.
+- The local environment file is excluded from Git; `.env.example` is provided as a template.
 - The setup script generates a random JWT secret when it creates the environment file.
-- The default configuration binds PostgreSQL to `127.0.0.1`; it is intended for local use.
-
-Never commit real passwords, tokens, or private keys.
+- PostgreSQL is bound to `127.0.0.1` for local development.
+- Never commit real passwords, tokens, or private keys.
 
 ## 🧯 Troubleshooting
 
 <details>
 <summary><strong>Docker is not running</strong></summary>
 
-Open Docker Desktop, wait until the engine is ready, and run `SETUP.bat` or `START.bat` again.
+Open Docker Desktop, wait for the engine to become ready, then run `SETUP.bat` or `START.bat` again.
 
 </details>
 
 <details>
-<summary><strong>The application does not start</strong></summary>
+<summary><strong>Setup or application startup fails</strong></summary>
 
-Run `SETUP.bat` first and review the error shown in the terminal. Confirm that the required ports are available.
+Run `SETUP.bat` first and read the terminal output. Check that the required ports are available and that Docker Desktop is running.
 
 </details>
 
 <details>
 <summary><strong>The frontend cannot connect to the backend</strong></summary>
 
-Make sure the backend is running and that port `3000` is available. You can check the API at http://127.0.0.1:3000/api/health.
+Make sure the backend server is running and port `3000` is available. Check the API health endpoint at http://127.0.0.1:3000/api/health.
 
 </details>
 
 <details>
 <summary><strong>PostgreSQL does not start</strong></summary>
 
-Check the database container logs:
+Check the container logs:
 
 ```cmd
 docker compose --env-file backend/.env logs postgres
 ```
 
-Also confirm that Docker Desktop is running and port `5432` is not already occupied.
+Also verify that Docker Desktop is running and port `5432` is not being used by another service.
 
 </details>
 
@@ -218,8 +216,8 @@ Also confirm that Docker Desktop is running and port `5432` is not already occup
 
 <div align="center">
 
-**LinkShort** · Built as a full-stack educational project.
+**LinkShort** · A full-stack educational project.
 
-[Repository](https://github.com/Servin1414/LinkShort)
+[View Repository](https://github.com/Servin1414/LinkShort)
 
 </div>
